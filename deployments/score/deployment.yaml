@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: score
+  name: score
+  namespace: score
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: score
+  template:
+    metadata:
+      labels:
+        app: score
+    spec:
+      terminationGracePeriodSeconds: 4
+      containers:
+        - name: score
+          image: localhost:5001/score:cinq-kubedoom-2025
+
+          env:
+            - name: SCORE_PUSH_URL
+              value: "http://192.168.1.2:8080/score"
+
+          ports:
+            - containerPort: 80
+              name: http
+          
+          volumeMounts:
+            - name: score-data
+              mountPath: /data
+      
+      volumes:
+        - name: score-data
+          hostPath:
+            path: /Users/boukenijhuis/kubedoom-2025/data
+            type: DirectoryOrCreate

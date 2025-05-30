@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kubedoom
+  name: kubedoom
+  namespace: kubedoom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubedoom
+  template:
+    metadata:
+      labels:
+        app: kubedoom
+    spec:
+      terminationGracePeriodSeconds: 4
+      hostNetwork: true
+      serviceAccountName: kubedoom
+      containers:
+        - image: localhost:5001/doom:cinq-kubedoom-2025
+          env:
+            - name: NAMESPACE
+              value: monster
+          name: kubedoom
+          ports:
+            - containerPort: 5900
+              name: vnc

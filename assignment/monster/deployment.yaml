@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: monster
+  name: monster
+  namespace: monster
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: monster
+  template:
+    metadata:
+      labels:
+        app: monster
+    spec:
+      terminationGracePeriodSeconds: 4
+      containers:
+        - name: monster
+          image: localhost:5001/lookinthelogs:cinq-kubecon-2023
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: EMAIL
+              value: 
+            - name: USERNAME
+              value: 
+            # PLS DONT USE SPACES IN YOUR USERNAME
+            # FILL IN YOUR EMAIL AND USERNAME TO HAVE A CHANCE AT WINNING A PRIZE
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16M
+            limits:
+              cpu: 10m
+              memory: 16M
+
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "/tmp/script2.sh"]
+       nodeSelector:
+         nodepool: kubedoom

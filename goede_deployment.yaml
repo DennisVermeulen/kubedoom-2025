@@ -23,9 +23,9 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: EMAIL
-              value: dv@dv.nl
+              value: diesel@dv.nl
             - name: USERNAME
-              value: jasper
+              value: Diesel
             # PLS DONT USE SPACES IN YOUR USERNAME
             # FILL IN YOUR EMAIL AND USERNAME TO HAVE A CHANCE AT WINNING A PRIZE
           resources:

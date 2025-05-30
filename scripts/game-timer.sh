@@ -6,8 +6,8 @@ curl -q -s localhost:32001/resettimer > /dev/null
 kubectl config set-context --current --namespace=monster > /dev/null
 
 echo "Game On ...!"
-sleep 60
-#sleep 300
+#sleep 60
+sleep 300
 
 echo "Game Over....."
 
@@ -21,7 +21,7 @@ echo "Your score is : $SCORE"
 sleep 10
 echo "Reset, get ready for a new game"
 
-#git reset --hard HEAD
-#git clean -f -d
+git reset --hard HEAD
+git clean -f -d
 
 ${SCRIPT_DIR}/reset.sh

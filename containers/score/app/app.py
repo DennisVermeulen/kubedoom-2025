@@ -83,7 +83,7 @@ def done():
     global scoring_done
     scoring_done = True
     
-    # Read all existing scores to calculate proper rank
+    # Read all existing scores
     all_scores = []
     try:
         with open(SCORES_FILE, 'r', newline='') as file:
@@ -91,27 +91,31 @@ def done():
             next(reader)  # Skip header
             for row in reader:
                 if len(row) >= 4:
-                    all_scores.append(int(row[3]))
+                    all_scores.append([int(row[0]), row[1], row[2], int(row[3])])
     except Exception as e:
         print(f"Error reading scores: {e}")
     
-    # Add current score and sort descending (highest first)
-    all_scores.append(score)
-    all_scores.sort(reverse=True)
+    # Add new score
+    all_scores.append([0, username, email, score])  # rank will be calculated
     
-    # Find rank (1-indexed position in sorted list)
-    rank = all_scores.index(score) + 1
+    # Sort by score (descending)
+    all_scores.sort(key=lambda x: x[3], reverse=True)
     
-    # Save score to CSV file
-    with open(SCORES_FILE, 'a', newline='') as file:
+    # Assign ranks
+    for i, score_row in enumerate(all_scores):
+        score_row[0] = i + 1  # rank is position + 1
+    
+    # Rewrite entire CSV file with correct ranks and sorting
+    with open(SCORES_FILE, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([rank, username, email, score])
+        writer.writerow(['rank', 'username', 'email', 'score'])
+        for score_row in all_scores:
+            writer.writerow(score_row)
     
     # Also try to send to external URL if configured
     if score_push_url:
         try:
             score_object = {
-                'rank': rank,
                 'username': username,
                 'email': email,
                 'score': score
@@ -131,13 +135,12 @@ def view_scores():
             reader = csv.reader(file)
             next(reader)  # Skip header
             for row in reader:
-                scores.append(row)
+                if len(row) >= 4:  # rank, username, email, score
+                    scores.append(row)
     except Exception as e:
         print(f"Error reading scores file: {e}")
     
-    # Sort scores by score (descending - highest first)
-    scores.sort(key=lambda x: int(x[3]) if len(x) >= 4 and x[3].isdigit() else 0, reverse=True)
-    
+    # CSV is already sorted, just display it
     html = """
     <!DOCTYPE html>
     <html>
@@ -161,13 +164,13 @@ def view_scores():
             </tr>
     """
     
-    for score in scores:
+    for score_row in scores:
         html += f"""
             <tr>
-                <td>{score[0]}</td>
-                <td>{score[1]}</td>
-                <td>{score[2]}</td>
-                <td>{score[3]}</td>
+                <td>{score_row[0]}</td>
+                <td>{score_row[1]}</td>
+                <td>{score_row[2]}</td>
+                <td>{score_row[3]}</td>
             </tr>
         """
         

@@ -1,0 +1,7 @@
+---
+namespace: score
+
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - svc.yaml

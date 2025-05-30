@@ -1,0 +1,5 @@
+namespace: monster
+
+resources:
+  - namespace.yaml
+  - quota.yaml

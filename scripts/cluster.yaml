@@ -1,0 +1,41 @@
+---
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+
+name: kubedoom
+
+networking:
+  ipFamily: ipv4
+  apiServerAddress: 127.0.0.1
+  apiServerPort: 6443
+
+  podSubnet: "10.255.0.0/16"
+
+nodes:
+  - role: control-plane
+    image: localhost:5001/kind-node:v1.33.0_cinq-kubedoom-2025
+  
+  - role: worker
+    image: localhost:5001/kind-node:v1.33.0_cinq-kubedoom-2025
+    extraPortMappings:
+      # Monster
+      - containerPort: 32000
+        hostPort: 32000
+      
+      # KubeDoom
+      - containerPort: 5900
+        hostPort: 5900
+      - containerPort: 5901
+        hostPort: 5901
+
+      # Score
+      - containerPort: 32001
+        hostPort: 32001
+    extraMounts:
+      - hostPath: /Users/boukenijhuis/kubedoom-2025/data
+        containerPath: /Users/boukenijhuis/kubedoom-2025/data
+
+containerdConfigPatches:
+- |-
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5001"]
+    endpoint = ["http://kind-registry:5000"]

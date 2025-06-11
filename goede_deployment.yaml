@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 4
       containers:
         - name: monster
-          image: localhost:5001/lookinthelogs:cinq-kubedoom-2025
+          image: localhost:6200/lookinthelogs:cinq-kubedoom-2025
           imagePullPolicy: IfNotPresent
           env:
             - name: EMAIL

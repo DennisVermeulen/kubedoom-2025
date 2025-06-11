@@ -20,7 +20,8 @@ spec:
       hostNetwork: true
       serviceAccountName: kubedoom
       containers:
-        - image: localhost:5001/doom:cinq-kubedoom-2025
+        - image: doom:cinq-kubedoom-2025
+          imagePullPolicy: Never
           env:
             - name: NAMESPACE
               value: monster

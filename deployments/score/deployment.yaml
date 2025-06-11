@@ -19,7 +19,8 @@ spec:
       terminationGracePeriodSeconds: 4
       containers:
         - name: score
-          image: localhost:5001/score:cinq-kubedoom-2025
+          image: score:cinq-kubedoom-2025
+          imagePullPolicy: Never
 
           env:
             - name: SCORE_PUSH_URL
@@ -36,6 +37,6 @@ spec:
       volumes:
         - name: score-data
           hostPath:
-            #path: /Users/denver/projects/kubedoom-2025/data
-            path: /Users/boukenijhuis/kubedoom-2025/data
+            path: /Users/denver/projects/kubedoom-2025/data
+            #path: /Users/boukenijhuis/kubedoom-2025/data
             type: DirectoryOrCreate

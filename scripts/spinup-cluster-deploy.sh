@@ -3,7 +3,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # define registry name
 reg_name='kind-registry'
-reg_cluster_port='5000'
+reg_cluster_port='6200'
 
 # start kind cluster
 kind create cluster --config=${SCRIPT_DIR}/cluster.yaml

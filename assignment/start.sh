@@ -15,7 +15,7 @@ bold=$(tput bold)
 clear
 echo
 echo
-docker run -v ${SCRIPT_DIR}/cinq-logo.png:/image/cinq-logo.png -ti localhost:5001/ascii-image-converter:cinq-kubecon-2023 --width=${LOGO_WIDTH} -c --color /image/cinq-logo.png
+docker run -v ${SCRIPT_DIR}/cinq-logo.png:/image/cinq-logo.png -ti localhost:6200/ascii-image-converter:cinq-kubecon-2025 --width=${LOGO_WIDTH} -c --color /image/cinq-logo.png
 echo
 echo
 

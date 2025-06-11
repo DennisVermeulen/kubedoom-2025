@@ -13,10 +13,10 @@ networking:
 
 nodes:
   - role: control-plane
-    image: localhost:5001/kind-node:v1.33.0_cinq-kubedoom-2025
+    image: localhost:6200/kind-node:v1.33.0_cinq-kubedoom-2025
   
   - role: worker
-    image: localhost:5001/kind-node:v1.33.0_cinq-kubedoom-2025
+    image: localhost:6200/kind-node:v1.33.0_cinq-kubedoom-2025
     extraPortMappings:
       # Monster
       - containerPort: 32000
@@ -32,12 +32,12 @@ nodes:
       - containerPort: 32001
         hostPort: 32001
     extraMounts:
-      - hostPath: /Users/boukenijhuis/kubedoom-2025/data
-        containerPath: /Users/boukenijhuis/kubedoom-2025/data
-      #- hostPath: /Users/denver/projects/kubedoom-2025/data
-      #  containerPath: /Users/denver/projects/kubedoom-2025/data 
+      #- hostPath: /Users/boukenijhuis/data
+      #  containerPath: /Users/boukenijhuis/data
+      - hostPath: /Users/denver/data
+        containerPath: /Users/denver/data 
 
 containerdConfigPatches:
 - |-
-  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5001"]
-    endpoint = ["http://kind-registry:5000"]
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:6200"]
+    endpoint = ["http://172.18.0.4:5000"]

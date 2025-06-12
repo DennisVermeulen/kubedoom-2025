@@ -5,7 +5,7 @@ metadata:
   labels:
     app: monster
   name: monster
-  namespace: monster
+  namespace: mOnster
 spec:
   replicas: 9
   selector:
@@ -33,12 +33,12 @@ spec:
               cpu: 10m
               memory: 16M
             limits:
-              cpu: 10m
-              memory: 16M
+              cpu: 10M
+              memory: 16m
 
           lifecycle:
             preStop:
               exec:
                 command: ["/bin/sh", "-c", "/tmp/script2.sh"]
-       nodeSelector:
-         nodepool: kubedoom
+      nodeSelector:
+        kubernetes.io/hostname: kubedoom-worker

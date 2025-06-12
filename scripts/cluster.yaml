@@ -32,10 +32,8 @@ nodes:
       - containerPort: 32001
         hostPort: 32001
     extraMounts:
-      #- hostPath: /Users/boukenijhuis/data
-      #  containerPath: /Users/boukenijhuis/data
-      - hostPath: /Users/denver/data
-        containerPath: /Users/denver/data 
+      - hostPath: /Users/boukenijhuis/data
+        containerPath: /Users/boukenijhuis/data
 
 containerdConfigPatches:
 - |-

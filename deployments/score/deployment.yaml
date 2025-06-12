@@ -36,6 +36,5 @@ spec:
       volumes:
         - name: score-data
           hostPath:
-            path: /Users/denver/data
-            #path: /Users/boukenijhuis/data
+            path: /Users/boukenijhuis/data
             type: DirectoryOrCreate

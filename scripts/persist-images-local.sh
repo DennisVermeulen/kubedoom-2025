@@ -5,7 +5,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # -> <local-image-name> is used in all deployments (!)
 images="
 denver74/doom:v1,doom:cinq-kubedoom-2025
-dockvx/ascii-image-converter:1.13.1,dockvx/ascii-image-converter:cinq-kubecon-2023
+denver74/ascii-image-converter:1.13.1,denver74/ascii-image-converter:cinq-kubecon-2025
 denver74/lookinthelogs:v1,lookinthelogs:cinq-kubedoom-2025
 denver74/score:v3,score:cinq-kubedoom-2025
 kindest/node:v1.33.0@sha256:02f73d6ae3f11ad5d543f16736a2cb2a63a300ad60e81dac22099b0b04784a4e,kind-node:v1.33.0_cinq-kubedoom-2025

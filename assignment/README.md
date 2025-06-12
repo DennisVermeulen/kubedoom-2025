@@ -15,7 +15,14 @@ Fix the deployment in this directory to spawn demons in Doom.
 
 When you have fixed the deployment, demons start to spawn inside Doom.
 Play doom by connecting with VNC to: `localhost:5900`
-Shoot the demons to score points. 
+
+A shortcut of VNCViewer is created on de desktop. 
+
+- Press Space to open doors
+- Use arrow keys to move
+- Press Control to shoot 
+
+Shoot the demons to score points.
 
 If you haven't fixed the deployment before time runs out, you won't score any points!
 

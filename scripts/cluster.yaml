@@ -32,10 +32,10 @@ nodes:
       - containerPort: 32001
         hostPort: 32001
     extraMounts:
-      - hostPath: /Users/boukenijhuis/kubedoom-2025/data
-        containerPath: /Users/boukenijhuis/kubedoom-2025/data
-      #- hostPath: /Users/denver/projects/kubedoom-2025/data
-      #  containerPath: /Users/denver/projects/kubedoom-2025/data 
+      #- hostPath: /Users/boukenijhuis/data
+      #  containerPath: /Users/boukenijhuis/data
+      - hostPath: /Users/denver/data
+        containerPath: /Users/denver/data 
 
 containerdConfigPatches:
 - |-

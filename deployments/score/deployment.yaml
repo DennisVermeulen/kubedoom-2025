@@ -36,6 +36,6 @@ spec:
       volumes:
         - name: score-data
           hostPath:
-            #path: /Users/denver/projects/kubedoom-2025/data
-            path: /Users/boukenijhuis/kubedoom-2025/data
+            path: /Users/denver/data
+            #path: /Users/boukenijhuis/data
             type: DirectoryOrCreate
